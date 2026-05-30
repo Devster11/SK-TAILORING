@@ -8,15 +8,7 @@ import {
   perfect_fit,
 } from "../assets/assets";
 
-// ==========================================
-// REPLACE THESE IMAGES WITH YOUR OWN ASSETS
-// ==========================================
-// const IMAGES = {
-//   // Recommended: landscape orientation images showcasing your craftsmanship
-//   card1: ,
-//   card2: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&q=80&w=800",
-//   card3: "https://images.unsplash.com/photo-1596464518120-21b6a3782b12?auto=format&fit=crop&q=80&w=800"
-// };
+
 
 const Story = () => {
   const cards = [
