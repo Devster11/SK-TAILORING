@@ -173,7 +173,7 @@ const About = () => {
       </div>
 
       {/* 6. CTA Footer */}
-      <div className="w-full bg-[#EBE4D5]/80 py-8 px-6 flex flex-col md:flex-row items-center justify-center gap-6">
+      <div className="w-full bg-[#EBE4D5]/80 py-8 px-6 flex flex-col md:flex-col items-center justify-center gap-6">
         <div className="flex items-center gap-3">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-accent">
             <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="currentColor"/>
@@ -193,6 +193,8 @@ const About = () => {
           </svg>
           <span>Enquire Now</span>
         </a>
+        <p>Developed with Love By <a href="#">Srikresh</a> & <a href="#">Pradeep G</a></p>
+        <p>&copy; Sk Tailoring All Rights Reserved</p>
       </div>
 
     </section>
