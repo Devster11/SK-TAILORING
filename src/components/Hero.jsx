@@ -12,17 +12,17 @@ const Hero = () => {
     >
       <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
         {/* Mobile Image (Shows on top for mobile, hidden on desktop) */}
-        <div className="w-full lg:hidden rounded-sm overflow-hidden h-[450px] shadow-sm relative">
+        <div className="w-full max-w-[500px] mx-auto lg:hidden rounded-xl overflow-hidden h-[400px] sm:h-[490px] md:h-[540px] shadow-sm relative">
           <img
             src={Brand_girl_edited}
             alt="Elegant Saree Design"
-            className="w-full h-full object-cover object-center rounded-xl"
+            className="w-full h-full object-cover object-top"
           />
         </div>
 
         {/* Text Content */}
         <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-         {/* <div className="flex items-center justify-center w-full space-x-3 mb-6">
+          {/* <div className="flex items-center justify-center w-full space-x-3 mb-6">
             <span className="block mx-auto text-center text-[0.65rem] tracking-[0.25em] font-semibold text-accent uppercase bg-">
               Handcrafted with passion
             </span>
@@ -52,7 +52,6 @@ const Hero = () => {
             >
               Explore Designs
             </a>
-            
           </div>
         </div>
 

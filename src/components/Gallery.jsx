@@ -117,6 +117,8 @@ const GRID_ITEMS = [
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("ALL DESIGNS");
   const [visibleCount, setVisibleCount] = useState(8);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isClosing, setIsClosing] = useState(false);
   useEffect(() => {
     setVisibleCount(8);
   }, [activeFilter]);
@@ -133,16 +135,21 @@ const Gallery = () => {
     "CONTEMPORARY",
     "CUSTOM MADE",
   ];
+  const isMobile = window.innerWidth < 768;
+  const closeModal = () => {
+    setIsClosing(true);
+
+    setTimeout(() => {
+      setSelectedImage(null);
+      setIsClosing(false);
+    }, 300);
+  };
 
   return (
     <section
       id="gallery"
       className="relative z-10 w-full pt-24 pb-32 px-6 overflow-hidden bg-background"
     >
-      
-
-      
-
       <div className="max-w-[1400px] mx-auto flex flex-col items-center">
         {/* Header Text */}
         <div className="text-center mb-10">
@@ -171,11 +178,15 @@ const Gallery = () => {
         <div className="w-full h-[400px] md:h-[500px] mb-16 relative">
           <CircularGallery
             items={CIRCULAR_ITEMS}
-            bend={2.5}
-            textColor="#CBA153"
-            borderRadius={0.08}
+            bend={isMobile ? 0.8 : 2.8}
+            borderRadius={isMobile ? 0.12 : 0.08}
             scrollEase={0.05}
-            font="bold 24px Playfair Display"
+            textColor="#CBA153"
+            font={
+              isMobile
+                ? "bold 16px Playfair Display"
+                : "bold 24px Playfair Display"
+            }
           />
         </div>
 
@@ -213,7 +224,13 @@ const Gallery = () => {
                 />
 
                 {/* Hover Magnify Button */}
-                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center text-accent shadow-sm transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer hover:bg-accent hover:text-white">
+                <button
+                  onClick={() => {
+                    setIsClosing(false);
+                    setSelectedImage(item.img);
+                  }}
+                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center text-accent shadow-sm transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:bg-accent hover:text-white"
+                >
                   <svg
                     width="18"
                     height="18"
@@ -227,7 +244,7 @@ const Gallery = () => {
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                   </svg>
-                </div>
+                </button>
               </div>
 
               {/* Text Content */}
@@ -242,6 +259,36 @@ const Gallery = () => {
             </div>
           ))}
         </div>
+        {selectedImage && (
+          <div
+            className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 ${
+              isClosing ? "animate-[fadeOut_0.5s_ease_forwards]" : ""
+            }`}
+            onClick={closeModal}
+          >
+            <div
+              className="relative max-w-5xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeModal}
+                className="absolute -top-12 right-0 text-white text-4xl font-light"
+              >
+                ×
+              </button>
+
+              <img
+                src={selectedImage}
+                alt=""
+                className={`w-full max-h-[90vh] object-contain rounded-xl ${
+                  isClosing
+                    ? "animate-[fadeOut_0.5s_ease_forwards]"
+                    : "animate-[zoomIn_0.4s_ease]"
+                }`}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Action Button */}
         {visibleCount < filteredItems.length && (
