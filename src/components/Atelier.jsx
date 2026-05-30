@@ -31,7 +31,7 @@ const Atelier = () => {
         </h2>
 
         <p className="text-text-muted text-[1.05rem] md:text-lg max-w-[650px] leading-relaxed">
-          At Saaj Atelier, we blend timeless craftsmanship with modern elegance to create pieces that are as unique as you are.
+          At Sk tailoring, we blend timeless craftsmanship with modern elegance to create pieces that are as unique as you are.
         </p>
 
       </div>

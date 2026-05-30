@@ -13,13 +13,13 @@ function App() {
     <HelmetProvider>
       <div className="app-container relative">
         <Helmet>
-          <title>Saaj Atelier | Timeless Elegance & Bespoke Designs</title>
-          <meta name="description" content="Saaj Atelier offers bespoke blouse and saree designs crafted to celebrate your individuality. Experience premium quality, perfect fit, and handcrafted elegance." />
-          <meta name="keywords" content="Saaj Atelier, bespoke sarees, custom blouses, Indian traditional wear, elegant fashion, tailor-made sarees" />
-          <meta property="og:title" content="Saaj Atelier | Timeless Elegance" />
+          <title>SK tailoring</title>
+          <meta name="description" content="Sk tailoring offers bespoke blouse and saree designs crafted to celebrate your individuality. Experience premium quality, perfect fit, and handcrafted elegance." />
+          <meta name="keywords" content="Sk tailoring, bespoke sarees, custom blouses, Indian traditional wear, elegant fashion, tailor-made sarees" />
+          <meta property="og:title" content="Sk tailoring | Timeless Elegance" />
           <meta property="og:description" content="Bespoke blouse and saree designs crafted to celebrate your individuality." />
           <meta property="og:type" content="website" />
-          <link rel="canonical" href="https://saajatelier.com/" />
+          
         </Helmet>
 
         <Header />

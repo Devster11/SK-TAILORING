@@ -8,8 +8,9 @@ const Header = () => {
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-accent">
           <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="currentColor" opacity="0.8"/>
         </svg>
-        <h1 className="font-heading text-2xl tracking-[0.2em] text-text-main leading-none uppercase text-center">Saaj</h1>
-        <span className="text-[0.55rem] tracking-[0.3em] text-text-muted uppercase">Atelier</span>
+        <h1 className="font-heading text-2xl tracking-[0.2em] text-text-main leading-none uppercase text-center">SK
+        </h1>
+        <span className="text-[0.55rem] tracking-[0.3em] text-text-muted uppercase">Tailoring</span>
       </div>
 
       {/* Desktop Navigation */}
@@ -17,14 +18,13 @@ const Header = () => {
         <a href="#home" className="text-xs font-semibold tracking-widest text-text-main uppercase hover:text-accent transition-colors">Home</a>
         <a href="#gallery" className="text-xs font-semibold tracking-widest text-text-muted uppercase hover:text-accent transition-colors">Gallery</a>
         <a href="#about" className="text-xs font-semibold tracking-widest text-text-muted uppercase hover:text-accent transition-colors">About</a>
-        <a href="#contact" className="text-xs font-semibold tracking-widest text-text-muted uppercase hover:text-accent transition-colors">Contact</a>
       </nav>
 
       {/* Right side (Enquire Button) / Mobile Menu */}
       <div className="flex items-center">
         {/* Desktop Enquire - Redirects to WhatsApp */}
         <a 
-          href="https://wa.me/1234567890?text=Hello%20Saaj%20Atelier!%20I%20would%20like%20to%20enquire%20about%20your%20designs." 
+          href="https://wa.me/9840147173?text=Hello%20SK%20Tailoring!%20I%20would%20like%20to%20enquire%20about%20your%20designs." 
           target="_blank" 
           rel="noopener noreferrer"
           className="hidden md:flex items-center space-x-2 border border-accent rounded-full px-6 py-2 text-xs font-semibold tracking-wider text-accent uppercase hover:bg-accent hover:text-white transition-all duration-300"

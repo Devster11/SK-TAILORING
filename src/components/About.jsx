@@ -1,13 +1,14 @@
 import React from 'react';
+import { about_imgage,bespoke_image,Bespoke_design, premium,perfect_fit } from '../assets/assets';
 
 // ==========================================
 // REPLACE THESE IMAGES WITH YOUR OWN ASSETS
 // ==========================================
 const IMAGES = {
   // Recommended: landscape image showing someone working or crafting
-  storyImage: "https://images.unsplash.com/photo-1595341505325-0ce1486df896?auto=format&fit=crop&q=80&w=800",
+  storyImage: about_imgage,
   // Recommended: close-up detail shot of embroidery or fabric
-  craftsmanshipImage: "https://images.unsplash.com/photo-1588636400030-97db3370f6e9?auto=format&fit=crop&q=80&w=800"
+  craftsmanshipImage: bespoke_image,
 };
 
 const About = () => {
@@ -16,27 +17,9 @@ const About = () => {
       
       {/* 1. Top Section: Our Atelier */}
       <div className="relative w-full px-6 flex flex-col items-center text-center mb-24">
-        {/* Decorative Silk Fabric (Left) */}
-        <div className="absolute top-[-80px] left-0 w-[500px] h-[400px] pointer-events-none -z-10 opacity-60 mix-blend-multiply">
-          <img 
-            src="https://images.unsplash.com/photo-1604147706283-d7119b5b822c?auto=format&fit=crop&q=80&w=600" 
-            alt="Silk texture" 
-            className="w-full h-full object-cover object-right"
-            style={{ maskImage: 'linear-gradient(to bottom right, black, transparent)', WebkitMaskImage: 'linear-gradient(to bottom right, black, transparent)' }}
-          />
-        </div>
+       
 
-        {/* Decorative Rose (Right) */}
-        <div className="absolute top-[-50px] right-0 w-[400px] h-[400px] pointer-events-none -z-10 opacity-30 text-accent">
-          <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full stroke-current" strokeWidth="1.5">
-            <path d="M256,400 C256,400 350,300 400,200 C450,100 256,50 256,150 C256,50 62,100 112,200 C162,300 256,400 256,400 Z" strokeLinejoin="round"/>
-            <path d="M256,150 C300,150 350,200 350,250 C350,300 256,350 256,350 C256,350 162,300 162,250 C162,200 212,150 256,150 Z" strokeLinejoin="round"/>
-            <path d="M256,220 C280,220 300,240 300,260 C300,280 256,300 256,300 C256,300 212,280 212,260 C212,240 232,220 256,220 Z" strokeLinejoin="round"/>
-            <path d="M256,400 C250,450 200,500 150,512" strokeLinecap="round"/>
-            <path d="M230,440 C180,430 140,400 120,380 C140,380 180,390 230,440 Z" strokeLinejoin="round"/>
-            <path d="M280,450 C330,450 380,430 410,400 C390,390 340,410 280,450 Z" strokeLinejoin="round"/>
-          </svg>
-        </div>
+        
 
         <div className="flex items-center justify-center w-full mb-4">
           <div className="w-6 h-[1px] bg-accent opacity-50"></div>
@@ -99,11 +82,7 @@ const About = () => {
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="flex items-center gap-6">
             <div className="w-14 h-14 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                <path d="M12 21.5c-4.686 0-8.5-3.814-8.5-8.5 0-4.686 3.814-8.5 8.5-8.5 4.686 0 8.5 3.814 8.5 8.5" strokeLinecap="round"/>
-                <path d="M12 4v4m0 0l-1.5-1.5M12 8l1.5-1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 11.5c-1.38 0-2.5 1.12-2.5 2.5 0 1.667 2.5 4 2.5 4s2.5-2.333 2.5-4c0-1.38-1.12-2.5-2.5-2.5z" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <img src={Bespoke_design} alt=""  className="w-10 h-10 object-contain"/>
             </div>
             <div>
               <h4 className="font-heading text-lg text-text-main mb-1">Bespoke Craftsmanship</h4>
@@ -113,10 +92,7 @@ const About = () => {
 
           <div className="flex items-center gap-6">
             <div className="w-14 h-14 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                <path d="M6 3h12l4 6-10 12L2 9l4-6z" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M2 9h20M12 21V9M6 3l6 6M18 3l-6 6" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <img src={premium} alt=""  className="w-10 h-10 object-contain"/>
             </div>
             <div>
               <h4 className="font-heading text-lg text-text-main mb-1">Premium Materials</h4>
@@ -126,10 +102,7 @@ const About = () => {
 
           <div className="flex items-center gap-6">
             <div className="w-14 h-14 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                <path d="M12 3c-1.5 0-2.5 1-2.5 2 0 1.5-1.5 2-3.5 2-1 0-2 1-2 2v2c0 1 1 2 2 2h1.5v6c0 1 1 2 2 2h3c1 0 2-1 2-2v-6H18c1 0 2-1 2-2v-2c0-1-1-2-2-2-2 0-3.5-.5-3.5-2 0-1-1-2-2.5-2z" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M9 11h6" strokeLinecap="round"/>
-              </svg>
+              <img src={perfect_fit} alt=""  className="w-10 h-10 object-contain"/>
             </div>
             <div>
               <h4 className="font-heading text-lg text-text-main mb-1">Perfect Fit</h4>
@@ -210,7 +183,7 @@ const About = () => {
           </span>
         </div>
         <a 
-          href="https://wa.me/1234567890?text=Hello%20Saaj%20Atelier!%20I%20would%20like%20to%20enquire%20about%20a%20custom%20design." 
+          href="https://wa.me/9840147173?text=Hello%SK%20Tailoring!%20I%20would%20like%20to%20enquire%20about%20a%20custom%20design." 
           target="_blank" 
           rel="noopener noreferrer"
           className="bg-accent text-white text-xs font-bold tracking-widest uppercase px-8 py-3 rounded-full shadow-md hover:bg-accent-hover transition-all duration-300 flex items-center gap-2"
