@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 import { Brand_girl_edited } from "../assets/assets";
 
 const Hero = () => {
@@ -14,7 +15,6 @@ const Hero = () => {
         {/* Mobile Image (Shows on top for mobile, hidden on desktop) */}
         <div className="w-full max-w-[500px] mx-auto lg:hidden rounded-xl overflow-hidden h-[400px] sm:h-[490px] md:h-[540px] shadow-sm relative">
           <img
-            src={Brand_girl_edited}
             alt="Elegant Saree Design"
             className="w-full h-full object-cover object-top"
           />
@@ -28,7 +28,8 @@ const Hero = () => {
             </span>
           </div> */}
 
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] text-text-main mb-6 text-center">
+          <h2
+          className="font-heading text-4xl md:text-5xl lg:text-[4rem] leading-[1.1] text-text-main mb-6 text-center">
             Timeless Elegance,
             <br />
             Tailored to Perfection
@@ -59,6 +60,7 @@ const Hero = () => {
         <div className="hidden lg:block w-full lg:w-1/2 relative">
           <div className="relative z-10 rounded-sm overflow-hidden h-[600px] xl:h-[700px] shadow-sm">
             <img
+
               className="rounded-sm"
               src={Brand_girl_edited}
               alt="Elegant Saree Design"
