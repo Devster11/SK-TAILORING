@@ -1,4 +1,3 @@
-import React from 'react';
 import { Bespoke_design,Made_with_love, perfect_fit, premium } from '../assets/assets';
 
 const Features = () => {

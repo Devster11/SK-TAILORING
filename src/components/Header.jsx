@@ -1,5 +1,3 @@
-import React from "react";
-import { motion } from "motion/react";
 
 const Header = () => {
   return (

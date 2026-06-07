@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Bespoke_design,
   premium_fabrics,

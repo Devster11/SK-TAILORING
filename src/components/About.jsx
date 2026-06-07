@@ -1,4 +1,3 @@
-import React from 'react';
 import { about_imgage,bespoke_image,Bespoke_design, premium,perfect_fit } from '../assets/assets';
 
 // ==========================================

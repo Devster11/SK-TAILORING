@@ -1,4 +1,3 @@
-import React from 'react';
 import { Bespoke_design, perfect_fit, premium,Affordable_price } from '../assets/assets';
 // ==========================================
 // REPLACE THESE IMAGES WITH YOUR OWN ASSETS

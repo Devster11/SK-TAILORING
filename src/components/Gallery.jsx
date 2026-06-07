@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import CircularGallery from "./CircularGallery";
 import {
   img1,
@@ -119,9 +119,6 @@ const Gallery = () => {
   const [visibleCount, setVisibleCount] = useState(8);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
-  useEffect(() => {
-    setVisibleCount(8);
-  }, [activeFilter]);
   const filteredItems =
     activeFilter === "ALL DESIGNS"
       ? GRID_ITEMS
@@ -195,7 +192,10 @@ const Gallery = () => {
           {filters.map((filter, idx) => (
             <button
               key={idx}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => {
+                setActiveFilter(filter);
+                setVisibleCount(8);
+              }}
               className={`px-6 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 border
                 ${
                   activeFilter === filter
