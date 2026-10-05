@@ -1,5 +1,19 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    const element = document.querySelector(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <header className="relative z-20 py-6 px-6 lg:px-16 w-full flex justify-between items-center max-w-[1400px] mx-auto">
       {/* Logo */}
@@ -30,18 +44,21 @@ const Header = () => {
       <nav className="hidden md:flex items-center space-x-12">
         <a
           href="#home"
+          onClick={(e) => handleScroll(e, '#home')}
           className="text-xs font-semibold tracking-widest text-text-main uppercase hover:text-accent transition-colors"
         >
           Home
         </a>
         <a
           href="#gallery"
+          onClick={(e) => handleScroll(e, '#gallery')}
           className="text-xs font-semibold tracking-widest text-text-muted uppercase hover:text-accent transition-colors"
         >
           Gallery
         </a>
         <a
           href="#about"
+          onClick={(e) => handleScroll(e, '#about')}
           className="text-xs font-semibold tracking-widest text-text-muted uppercase hover:text-accent transition-colors"
         >
           About
@@ -64,12 +81,83 @@ const Header = () => {
         </a>
 
         {/* Mobile Hamburger */}
-        <button className="md:hidden flex flex-col justify-center items-center space-y-1.5 w-8 h-8">
-          <span className="w-6 h-[1.5px] bg-text-main block"></span>
-          <span className="w-6 h-[1.5px] bg-text-main block"></span>
-          <span className="w-6 h-[1.5px] bg-text-main block"></span>
+        <button 
+          onClick={toggleMenu}
+          className="md:hidden relative z-[60] flex flex-col justify-center items-center w-8 h-8 focus:outline-none"
+        >
+          <motion.span 
+            animate={{ rotate: isMenuOpen ? 45 : 0, y: isMenuOpen ? 0 : -6 }}
+            transition={{ duration: 0.3 }}
+            className="w-6 h-[1.5px] bg-text-main absolute block"
+          ></motion.span>
+          <motion.span 
+            animate={{ opacity: isMenuOpen ? 0 : 1 }}
+            transition={{ duration: 0.3 }}
+            className="w-6 h-[1.5px] bg-text-main absolute block"
+          ></motion.span>
+          <motion.span 
+            animate={{ rotate: isMenuOpen ? -45 : 0, y: isMenuOpen ? 0 : 6 }}
+            transition={{ duration: 0.3 }}
+            className="w-6 h-[1.5px] bg-text-main absolute block"
+          ></motion.span>
         </button>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{ duration: 0.5, ease: [0.77, 0, 0.175, 1] }}
+            className="fixed inset-0 z-50 bg-[#FAF8F5] flex flex-col items-center justify-center space-y-8"
+          >
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              href="#home"
+              onClick={(e) => handleScroll(e, '#home')}
+              className="text-2xl font-heading tracking-[0.2em] text-text-main uppercase"
+            >
+              Home
+            </motion.a>
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              href="#gallery"
+              onClick={(e) => handleScroll(e, '#gallery')}
+              className="text-2xl font-heading tracking-[0.2em] text-text-muted hover:text-text-main uppercase"
+            >
+              Gallery
+            </motion.a>
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              href="#about"
+              onClick={(e) => handleScroll(e, '#about')}
+              className="text-2xl font-heading tracking-[0.2em] text-text-muted hover:text-text-main uppercase"
+            >
+              About
+            </motion.a>
+            
+            <motion.a
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              href="https://wa.me/9840147173?text=Hello%20SK%20Tailoring!%20I%20would%20like%20to%20enquire%20about%20your%20designs."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 border border-accent rounded-full px-8 py-3 text-sm font-semibold tracking-wider text-accent uppercase"
+            >
+              Enquire Now
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

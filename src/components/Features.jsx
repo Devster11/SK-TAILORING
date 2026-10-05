@@ -1,4 +1,5 @@
-import { Bespoke_design,Made_with_love, perfect_fit, premium } from '../assets/assets';
+import { Bespoke_design, Made_with_love, perfect_fit, premium } from '../assets/assets';
+import { motion } from 'framer-motion';
 
 const Features = () => {
   const features = [
@@ -35,9 +36,16 @@ const Features = () => {
   return (
     <section className="w-full border-y border-accent/20 bg-[#F5F2EC]/50 relative z-10 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ staggerChildren: 0.15 }}
+          className="grid grid-cols-2 lg:grid-cols-4"
+        >
           {features.map((feature, index) => (
-            <div 
+            <motion.div 
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
               key={index} 
               className={`
                 flex flex-col lg:flex-row items-center lg:justify-center text-center lg:text-left gap-4 p-8
@@ -58,9 +66,9 @@ const Features = () => {
                   {feature.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

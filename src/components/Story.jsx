@@ -6,8 +6,7 @@ import {
   premium,
   perfect_fit,
 } from "../assets/assets";
-
-
+import { motion } from "framer-motion";
 
 const Story = () => {
   const cards = [
@@ -56,7 +55,13 @@ const Story = () => {
 
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
         {/* Header Text */}
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase mb-4">
             At Our Atelier
           </h3>
@@ -75,18 +80,28 @@ const Story = () => {
             <br className="hidden md:block" />
             to detail - crafted to make you feel extraordinary.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Cards Grid */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
+       {/* Cards Grid */}
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ staggerChildren: 0.2 }}
+          className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16"
+        >
           {cards.map((card, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-white rounded-xl shadow-sm border border-black/5 overflow-hidden flex flex-col relative group hover:shadow-md transition-shadow duration-300"
+              variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="bg-white rounded-xl shadow-sm border border-black/5 overflow-hidden flex flex-col relative group hover:shadow-xl transition-shadow duration-300"
             >
               {/* Desktop Image (Hidden on Mobile) */}
-              <div className="hidden md:block w-full h-[220px] lg:h-[260px] relative">
-                <img
+              <div className="hidden md:block w-full h-[220px] lg:h-[260px] relative overflow-hidden">
+                <motion.img
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.5 }}
                   src={card.imgUrl}
                   alt={card.title}
                   className="w-full h-full object-cover"
@@ -95,7 +110,7 @@ const Story = () => {
 
               {/* Overlapping Icon Badge (Desktop & Mobile) */}
               <div
-                className="md:absolute md:top-[250px] lg:top-[290px] lg:left-56/100 md:left-56/100  md:-translate-x-1/2 md:-translate-y-1/2 
+                className="md:absolute md:top-[220px] lg:top-[265px] lg:left-50/100 md:left-50/100  md:-translate-x-1/2 md:-translate-y-1/2 
                               bg-white w-14 h-14 rounded-full flex items-center justify-center shadow-sm 
                               mx-auto mt-8 md:mt-0 border border-black/5 z-10"
               >
@@ -111,12 +126,18 @@ const Story = () => {
                   {card.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Action Button */}
-        <a
+        <motion.a
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           href="https://wa.me/9840147173?text=Hello%20SK%20Tailoring!%20I%20would%20like%20to%20connect%20with%20you."
           target="_blank"
           rel="noopener noreferrer"
@@ -135,7 +156,7 @@ const Story = () => {
           >
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
-        </a>
+        </motion.a>
       </div>
     </section>
   );

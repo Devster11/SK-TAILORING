@@ -119,6 +119,7 @@ const Gallery = () => {
   const [visibleCount, setVisibleCount] = useState(8);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isClosing, setIsClosing] = useState(false);
+
   const filteredItems =
     activeFilter === "ALL DESIGNS"
       ? GRID_ITEMS
@@ -188,7 +189,7 @@ const Gallery = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16 w-full px-4">
+        <div className="flex overflow-x-auto md:flex-wrap justify-start md:justify-center gap-3 md:gap-4 mb-10 w-full px-4 pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {filters.map((filter, idx) => (
             <button
               key={idx}
@@ -196,7 +197,7 @@ const Gallery = () => {
                 setActiveFilter(filter);
                 setVisibleCount(8);
               }}
-              className={`px-6 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 border
+              className={`whitespace-nowrap flex-shrink-0 snap-center px-5 md:px-6 py-2 md:py-2.5 rounded-full text-[0.65rem] md:text-xs font-semibold tracking-widest uppercase transition-all duration-300 border
                 ${
                   activeFilter === filter
                     ? "bg-accent text-white border-accent shadow-md"
@@ -213,7 +214,11 @@ const Gallery = () => {
           {filteredItems.slice(0, visibleCount).map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl shadow-sm border border-black/5 overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300"
+              onClick={() => {
+                setIsClosing(false);
+                setSelectedImage(item.img);
+              }}
+              className="bg-white rounded-2xl shadow-sm border border-black/5 overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300 cursor-pointer"
             >
               {/* Image Container */}
               <div className="relative w-full h-[320px] overflow-hidden">
@@ -261,28 +266,29 @@ const Gallery = () => {
         </div>
         {selectedImage && (
           <div
-            className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 ${
-              isClosing ? "animate-[fadeOut_0.5s_ease_forwards]" : ""
+            className={`fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-10 ${
+              isClosing ? "animate-[fadeOut_0.4s_ease_forwards]" : "animate-[zoomIn_0.3s_ease]"
             }`}
             onClick={closeModal}
           >
+            {/* Close Button Fixed to Top Right */}
+            <button
+              onClick={closeModal}
+              className="fixed top-4 right-4 md:top-8 md:right-8 bg-white/10 text-white hover:bg-white hover:text-black w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-2xl font-light transition-colors z-[60]"
+            >
+              ×
+            </button>
+
             <div
-              className="relative max-w-5xl w-full"
+              className="relative max-w-5xl w-full flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={closeModal}
-                className="absolute -top-12 right-0 text-white text-4xl font-light"
-              >
-                ×
-              </button>
-
               <img
                 src={selectedImage}
                 alt=""
-                className={`w-full max-h-[90vh] object-contain rounded-xl ${
+                className={`w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl ${
                   isClosing
-                    ? "animate-[fadeOut_0.5s_ease_forwards]"
+                    ? "animate-[fadeOut_0.4s_ease_forwards]"
                     : "animate-[zoomIn_0.4s_ease]"
                 }`}
               />

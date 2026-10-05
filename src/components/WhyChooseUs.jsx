@@ -1,4 +1,6 @@
-import { Bespoke_design, perfect_fit, premium,Affordable_price } from '../assets/assets';
+import { Bespoke_design, perfect_fit, premium, Affordable_price } from '../assets/assets';
+import { motion } from 'framer-motion';
+
 // ==========================================
 // REPLACE THESE IMAGES WITH YOUR OWN ASSETS
 // ==========================================
@@ -14,28 +16,28 @@ const WhyChooseUs = () => {
   const cards = [
     {
       icon: (
-       <img src={Bespoke_design} alt="" className="w-10 h-10 object-contain"/>
+       <img src={Bespoke_design} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
       ),
       title: "Bespoke\nCraftsmanship",
       desc: "Every design is tailored exclusively for you."
     },
     {
       icon: (
-        <img src={premium} alt="" className="w-10 h-10 object-contain"/>
+        <img src={premium} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
       ),
       title: "Premium\nFinishes",
       desc: "Attention to detail in every stitch and pattern."
     },
     {
       icon: (
-        <img src={perfect_fit} alt=""className="w-10 h-10 object-contain" />
+        <img src={perfect_fit} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
       ),
       title: "Perfect Fit\nGuarantee",
       desc: "Designed to enhance comfort and confidence."
     },
     {
       icon: (
-        <img src={Affordable_price} alt=""className="w-10 h-10 object-contain" />
+        <img src={Affordable_price} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
       ),
       title: "Affordable\nPrice Range",
       desc: "Luxury designs that respect your budget."
@@ -43,16 +45,17 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className="relative z-10 w-full pt-16  px-6 overflow-hidden">
-      
-      
-
-      
-
+    <section className="relative z-10 w-full pt-16 px-6 overflow-hidden">
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
         
         {/* Header Text */}
-        <div className="text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
           <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase mb-4">
             Why Choose Us
           </h3>
@@ -70,12 +73,23 @@ const WhyChooseUs = () => {
             Every stitch reflects our passion for perfection<br className="hidden md:block" /> 
             and your trust in us.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cards Grid */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ staggerChildren: 0.15 }}
+          className="w-full grid grid-cols-1 md:grid-cols-4 gap-6 mb-6"
+        >
           {cards.map((card, idx) => (
-            <div key={idx} className="bg-white rounded-2xl shadow-sm border border-black/5 p-8 md:p-10 flex flex-col items-center text-center hover:shadow-md transition-shadow duration-300">
+            <motion.div 
+              key={idx} 
+              variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
+              whileHover={{ y: -10 }}
+              className="bg-white rounded-2xl shadow-sm border border-black/5 p-8 md:p-10 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300"
+            >
               <div className="mb-2">
                 {card.icon}
               </div>
@@ -84,13 +98,18 @@ const WhyChooseUs = () => {
               <p className="text-text-muted text-[0.8rem] leading-relaxed">
                 {card.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Banner Card / 5th Card */}
-        <div className="w-full bg-white rounded-2xl shadow-sm border border-black/5 p-6 md:p-8 flex flex-col md:flex-row items-center justify-center md:justify-start max-w-4xl mx-auto mb-16 gap-6 md:gap-12 hover:shadow-md transition-shadow duration-300">
-          
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8 }}
+          className="w-full bg-white rounded-2xl shadow-sm border border-black/5 p-6 md:p-8 flex flex-col md:flex-row items-center justify-center md:justify-start max-w-4xl mx-auto mb-16 gap-6 md:gap-12 hover:shadow-md transition-shadow duration-300"
+        >
           {/* Mobile Title (shows on top for mobile, hidden on desktop) */}
           <h4 className="md:hidden font-heading text-lg font-semibold text-text-main text-center">
             Trusted by 200+ Clients
@@ -122,10 +141,7 @@ const WhyChooseUs = () => {
               Loved by thousands of happy customers.
             </p>
           </div>
-        </div>
-
-        
-
+        </motion.div>
       </div>
     </section>
   );
