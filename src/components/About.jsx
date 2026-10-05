@@ -67,6 +67,7 @@ const About = () => {
             style={{ y: imgY, scale: 1.3 }}
             src={IMAGES.storyImage} 
             alt="Crafting garment" 
+            loading="lazy"
             className="w-full h-full object-cover origin-center"
           />
         </motion.div>
@@ -168,6 +169,7 @@ const About = () => {
             style={{ y: imgYReverse, scale: 1.3 }}
             src={IMAGES.craftsmanshipImage} 
             alt="Gold embroidery detail" 
+            loading="lazy"
             className="w-full h-full object-cover origin-center"
           />
         </motion.div>

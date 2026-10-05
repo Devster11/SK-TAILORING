@@ -5,28 +5,28 @@ const Features = () => {
   const features = [
     {
       icon: (
-        <img src={Bespoke_design} alt="" className="w-10 h-10 object-contain" />
+        <img src={Bespoke_design} alt="" loading="lazy" className="w-10 h-10 object-contain" />
       ),
       title: "BESPOKE DESIGNS",
       desc: "Made exclusively for you"
     },
     {
       icon: (
-        <img src={premium} alt="" className="w-8 h-8 object-contain" />
+        <img src={premium} alt="" loading="lazy" className="w-8 h-8 object-contain" />
       ),
       title: "PREMIUM QUALITY",
       desc: "Finest fabrics & finishes"
     },
     {
       icon: (
-         <img src={perfect_fit} alt="" className="w-8 h-8 object-contain" />
+         <img src={perfect_fit} alt="" loading="lazy" className="w-8 h-8 object-contain" />
       ),
       title: "PERFECT FIT",
       desc: "Designed for comfort & style"
     },
     {
       icon: (
-         <img src={Made_with_love} alt="" className="w-8 h-8 object-contain" />
+         <img src={Made_with_love} alt="" loading="lazy" className="w-8 h-8 object-contain" />
       ),
       title: "MADE WITH LOVE",
       desc: "Passion in every stitch"

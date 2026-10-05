@@ -16,28 +16,28 @@ const WhyChooseUs = () => {
   const cards = [
     {
       icon: (
-       <img src={Bespoke_design} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
+       <img src={Bespoke_design} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
       ),
       title: "Bespoke\nCraftsmanship",
       desc: "Every design is tailored exclusively for you."
     },
     {
       icon: (
-        <img src={premium} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
+        <img src={premium} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
       ),
       title: "Premium\nFinishes",
       desc: "Attention to detail in every stitch and pattern."
     },
     {
       icon: (
-        <img src={perfect_fit} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
+        <img src={perfect_fit} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
       ),
       title: "Perfect Fit\nGuarantee",
       desc: "Designed to enhance comfort and confidence."
     },
     {
       icon: (
-        <img src={Affordable_price} alt="" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
+        <img src={Affordable_price} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
       ),
       title: "Affordable\nPrice Range",
       desc: "Luxury designs that respect your budget."
@@ -123,6 +123,7 @@ const WhyChooseUs = () => {
                 key={i} 
                 src={src} 
                 alt="Client" 
+                loading="lazy"
                 className={`w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-white object-cover ${i !== 0 ? '-ml-4 md:-ml-5' : ''}`}
               />
             ))}
