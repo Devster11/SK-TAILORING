@@ -24,39 +24,78 @@ function autoBind(instance) {
   });
 }
 
-function createTextTexture(gl, text, font = 'bold 30px monospace', color = 'black') {
+function createTextTexture(gl, rawText, font = '500 24px Inter, sans-serif', color = '#CBA153') {
+  const text = (rawText || '').toUpperCase();
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
+  
+  const dpr = 2;
+  const letterSpacing = '2.5px';
+  
   context.font = font;
+  if ('letterSpacing' in context) {
+    context.letterSpacing = letterSpacing;
+  }
   const metrics = context.measureText(text);
   const textWidth = Math.ceil(metrics.width);
-  const textHeight = Math.ceil(parseInt(font, 10) * 1.2);
-  canvas.width = textWidth + 20;
-  canvas.height = textHeight + 20;
+  
+  const fontSizeMatch = font.match(/(\d+)px/);
+  const fontSize = fontSizeMatch ? parseInt(fontSizeMatch[1], 10) : 24;
+  const textHeight = Math.ceil(fontSize * 1.35);
+  
+  const logicalWidth = textWidth + 24;
+  const logicalHeight = textHeight + 16;
+  
+  canvas.width = Math.ceil(logicalWidth * dpr);
+  canvas.height = Math.ceil(logicalHeight * dpr);
+  
+  context.scale(dpr, dpr);
   context.font = font;
+  if ('letterSpacing' in context) {
+    context.letterSpacing = letterSpacing;
+  }
   context.fillStyle = color;
   context.textBaseline = 'middle';
   context.textAlign = 'center';
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillText(text, canvas.width / 2, canvas.height / 2);
+  context.clearRect(0, 0, logicalWidth, logicalHeight);
+  context.fillText(text, logicalWidth / 2, logicalHeight / 2);
+  
   const texture = new Texture(gl, { generateMipmaps: false });
   texture.image = canvas;
-  return { texture, width: canvas.width, height: canvas.height };
+  return { texture, width: logicalWidth, height: logicalHeight };
 }
 
 class Title {
-  constructor({ gl, plane, renderer, text, textColor = '#545050', font = '30px sans-serif' }) {
+  constructor({ gl, plane, renderer, text, textColor = '#CBA153', font = '500 24px Inter, sans-serif', fontFamily }) {
     autoBind(this);
     this.gl = gl;
     this.plane = plane;
     this.renderer = renderer;
     this.text = text;
     this.textColor = textColor;
-    this.font = font;
+    this.font = font || fontFamily || '500 24px Inter, sans-serif';
     this.createMesh();
   }
+
+  updateSize() {
+    if (!this.mesh) return;
+    const aspect = this.aspect || 3;
+    // Normalized text height relative to the parent card plane (where card height = 1)
+    const textHeight = 0.11;
+    const scaleY = this.plane.scale.y || 1;
+    const scaleX = this.plane.scale.x || 1;
+    // Keep exact aspect ratio on screen regardless of plane non-uniform scaling
+    const textWidth = textHeight * aspect * (scaleY / scaleX);
+
+    this.mesh.scale.set(textWidth, textHeight, 1);
+    this.mesh.position.x = 0;
+    // Local Y position right below the card's bottom edge (-0.5)
+    this.mesh.position.y = -0.5 - (textHeight * 0.5) - 0.055;
+  }
+
   createMesh() {
     const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
+    this.aspect = width / height;
     const geometry = new Plane(this.gl);
     const program = new Program(this.gl, {
       vertex: `
@@ -76,7 +115,7 @@ class Title {
         varying vec2 vUv;
         void main() {
           vec4 color = texture2D(tMap, vUv);
-          if (color.a < 0.1) discard;
+          if (color.a < 0.05) discard;
           gl_FragColor = color;
         }
       `,
@@ -84,12 +123,16 @@ class Title {
       transparent: true
     });
     this.mesh = new Mesh(this.gl, { geometry, program });
-    const aspect = width / height;
-    const textHeight = this.plane.scale.y * 0.15;
-    const textWidth = textHeight * aspect;
-    this.mesh.scale.set(textWidth, textHeight, 1);
-    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeight * 0.5 - 0.05;
+    this.updateSize();
     this.mesh.setParent(this.plane);
+  }
+
+  updateMesh() {
+    if (!this.mesh) return;
+    const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
+    this.mesh.program.uniforms.tMap.value = texture;
+    this.aspect = width / height;
+    this.updateSize();
   }
 }
 
@@ -218,8 +261,17 @@ class Media {
       renderer: this.renderer,
       text: this.text,
       textColor: this.textColor,
+      font: this.font,
       fontFamily: this.font
     });
+    
+    if (typeof document !== 'undefined' && document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        if (this.title && this.title.updateMesh) {
+          this.title.updateMesh();
+        }
+      });
+    }
   }
   update(scroll, direction) {
     this.plane.position.x = this.x - scroll.current - this.extra;
@@ -271,13 +323,17 @@ class Media {
       }
     }
     this.scale = this.screen.height / 1500;
+    const isDesktop = this.screen.width >= 1024;
     this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
     this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
     this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
-    this.padding = 2;
+    this.padding = isDesktop ? 1.6 : 2;
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
     this.x = this.width * this.index;
+    if (this.title && this.title.updateSize) {
+      this.title.updateSize();
+    }
   }
 }
 
@@ -289,7 +345,7 @@ class App {
       bend,
       textColor = '#ffffff',
       borderRadius = 0,
-      font = 'bold 30px Figtree',
+      font = '500 18px Inter, sans-serif',
       scrollSpeed = 2,
       scrollEase = 0.05
     } = {}
@@ -478,7 +534,7 @@ export default function CircularGallery({
   bend = 3,
   textColor = '#ffffff',
   borderRadius = 0.05,
-  font = 'bold 30px Figtree',
+  font = '500 18px Inter, sans-serif',
   scrollSpeed = 2,
   scrollEase = 0.05
 }) {

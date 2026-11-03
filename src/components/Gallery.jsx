@@ -146,7 +146,7 @@ const Gallery = () => {
   return (
     <section
       id="gallery"
-      className="relative z-10 w-full pt-24 pb-32 px-6 overflow-hidden bg-background"
+      className="relative z-10 w-full pt-24 pb-32 px-4 sm:px-6 lg:px-2 overflow-hidden bg-background"
     >
       <div className="max-w-[1400px] mx-auto flex flex-col items-center">
         {/* Header Text */}
@@ -173,17 +173,17 @@ const Gallery = () => {
         </div>
 
         {/* Circular Gallery Section */}
-        <div className="w-full h-[400px] md:h-[500px] mb-16 relative">
+        <div className="w-full lg:w-[calc(100%+6.5rem)] lg:-mx-[3.25rem] xl:w-[calc(100%+8.5rem)] xl:-mx-[4.25rem] lg:max-w-[1500px] h-[400px] md:h-[500px] mb-16 relative">
           <CircularGallery
             items={CIRCULAR_ITEMS}
-            bend={isMobile ? 0.8 : 2.8}
+            bend={isMobile ? 0.8 : 2.4}
             borderRadius={isMobile ? 0.12 : 0.08}
             scrollEase={0.05}
             textColor="#CBA153"
             font={
               isMobile
-                ? "bold 16px Playfair Display"
-                : "bold 24px Playfair Display"
+                ? "500 16px Inter, sans-serif"
+                : "500 22px Inter, sans-serif"
             }
           />
         </div>
