@@ -44,69 +44,52 @@ const containerFiles = import.meta.glob(
 
 const DEFAULT_GRID_METADATA = [
   {
-    title: "Royal Bridal",
-    desc: "Exquisite hand embroidery with intricate french knots.",
+    id: 1,
+    title: "Emerald Bridal",
+    description: "Rich emerald silk with gold beadwork and graceful hanging tassels.",
     category: "BRIDAL",
   },
   {
-    title: "Heritage Weave",
-    desc: "Traditional motifs woven with timeless craftsmanship.",
+    id: 2,
+    title: "Magenta Jewel",
+    description: "Deep magenta silk framed by a jewelled gold and green neckline.",
     category: "FESTIVE",
   },
   {
-    title: "Minimal Elegance",
-    desc: "Subtle embroidery for a graceful and elegant look.",
+    id: 3,
+    title: "Gilded Magenta",
+    description: "Magenta silk with a fine beaded neckline and a rich gold sleeve border.",
     category: "MINIMAL",
   },
   {
-    title: "Golden Symphony",
-    desc: "Inspired by royalty, crafted to perfection.",
+    id: 4,
+    title: "Copper Radiance",
+    description: "Copper-rose silk with a keyhole neckline and delicate gold beadwork.",
     category: "CONTEMPORARY",
   },
   {
-    title: "Blush Radiance",
-    desc: "Soft pastels adorned with shimmering zardosi work.",
+    id: 5,
+    title: "Coral Blush",
+    description: "Soft coral silk with gold bead flowers and a rich woven sleeve.",
     category: "BRIDAL",
   },
   {
-    title: "Emerald Dream",
-    desc: "Deep greens matched with rich golden thread details.",
+    id: 6,
+    title: "Forest Cascade",
+    description: "Deep green silk with gold beadwork and flowing bead tassels.",
     category: "FESTIVE",
   },
   {
-    title: "Classic Vintage",
-    desc: "A nod to the past with exquisite pearl highlights.",
+    id: 7,
+    title: "Sapphire Heritage",
+    description: "Royal blue silk with a gold beaded neckline and woven gold sleeves.",
     category: "CUSTOM MADE",
   },
   {
-    title: "Regal Charm",
-    desc: "Bold patterns designed to make a majestic statement.",
-    category: "CONTEMPORARY",
-  },
-  {
-    title: "Velvet Grace",
-    desc: "Luxury embroidery with royal elegance.",
-    category: "BRIDAL",
-  },
-  {
-    title: "Golden Bloom",
-    desc: "Inspired by traditional floral patterns.",
-    category: "FESTIVE",
-  },
-  {
-    title: "Pearl Essence",
-    desc: "Clean design with subtle embellishments.",
+    id: 8,
+    title: "Amethyst Bloom",
+    description: "Rich purple silk with golden flower beadwork and a woven border.",
     category: "MINIMAL",
-  },
-  {
-    title: "Modern Muse",
-    desc: "A contemporary twist on classic tailoring.",
-    category: "CONTEMPORARY",
-  },
-  {
-    title: "Signature Luxe",
-    desc: "Custom-crafted masterpiece.",
-    category: "CUSTOM MADE",
   },
 ];
 
@@ -120,15 +103,18 @@ const GRID_ITEMS =
         )
         .map(([path, img], idx) => {
           const meta = DEFAULT_GRID_METADATA[idx] || {
+            id: idx + 1,
             title: `Bespoke Design ${idx + 1}`,
-            desc: "Custom-crafted luxury tailored to perfection.",
+            description: "Custom-crafted luxury tailored to perfection.",
             category: CATEGORIES[idx % CATEGORIES.length],
           };
           return {
+            id: meta.id || idx + 1,
             img,
             title: meta.title,
-            desc: meta.desc,
-            category: meta.category,
+            desc: meta.description || meta.desc,
+            description: meta.description || meta.desc,
+            category: meta.category || CATEGORIES[idx % CATEGORIES.length],
           };
         })
     : [];
@@ -247,29 +233,6 @@ const Gallery = () => {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-
-                {/* Hover Magnify Button */}
-                <button
-                  onClick={() => {
-                    setIsClosing(false);
-                    setSelectedImage(item.img);
-                  }}
-                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm w-10 h-10 rounded-full flex items-center justify-center text-accent shadow-sm transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 hover:bg-accent hover:text-white"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </button>
               </div>
 
               {/* Text Content */}
@@ -286,32 +249,50 @@ const Gallery = () => {
         </div>
         {selectedImage && (
           <div
-            className={`fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 md:p-10 ${
+            className={`fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 ${
               isClosing ? "animate-[fadeOut_0.4s_ease_forwards]" : "animate-[zoomIn_0.3s_ease]"
             }`}
             onClick={closeModal}
           >
-            {/* Close Button Fixed to Top Right */}
-            <button
-              onClick={closeModal}
-              className="fixed top-4 right-4 md:top-8 md:right-8 bg-white/10 text-white hover:bg-white hover:text-black w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-2xl font-light transition-colors z-[60]"
-            >
-              ×
-            </button>
-
+            {/* Modal Content Wrapper: Row on >=1200px, Column on <1200px */}
             <div
-              className="relative max-w-5xl w-full flex items-center justify-center"
+              className="relative flex flex-col min-[1200px]:flex-row items-center justify-center gap-4 min-[1200px]:gap-6 max-w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={selectedImage}
-                alt=""
-                className={`w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl ${
-                  isClosing
-                    ? "animate-[fadeOut_0.4s_ease_forwards]"
-                    : "animate-[zoomIn_0.4s_ease]"
-                }`}
-              />
+              {/* Image Container */}
+              <div className="relative flex items-center justify-center">
+                <img
+                  src={selectedImage}
+                  alt="Full preview"
+                  className={`w-auto h-auto max-w-[90vw] min-[1200px]:max-w-[calc(90vw-5.5rem)] max-h-[70vh] sm:max-h-[75vh] min-[1200px]:max-h-[85vh] object-contain rounded-xl shadow-2xl select-none ${
+                    isClosing
+                      ? "animate-[fadeOut_0.4s_ease_forwards]"
+                      : "animate-[zoomIn_0.3s_ease]"
+                  }`}
+                />
+              </div>
+
+              {/* Close Button: Vertically centered on right for >=1200px, Horizontally centered below for <1200px */}
+              <button
+                onClick={closeModal}
+                aria-label="Close image preview"
+                className="cursor-pointer w-11 h-11 min-[1200px]:w-12 min-[1200px]:h-12 rounded-full bg-white/10 hover:bg-accent text-white hover:text-white border border-white/20 hover:border-accent shadow-xl backdrop-blur-md flex items-center justify-center transition-all duration-300 ease-out hover:scale-110 hover:rotate-90 hover:shadow-[0_0_20px_rgba(203,161,83,0.5)] active:scale-95 flex-shrink-0"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform duration-300"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
             </div>
           </div>
         )}
