@@ -49,124 +49,150 @@ const About = () => {
           <div className="w-6 h-[1px] bg-accent opacity-50"></div>
         </div>
 
-        <p className="text-text-muted text-[1.05rem] max-w-lg leading-relaxed">
-          A blend of timeless craftsmanship and modern elegance, tailored to celebrate individuality.
+        <p className="text-text-muted text-[0.95rem] md:text-[1.05rem] max-w-2xl leading-relaxed">
+          Every creation at SK Tailoring is more than just a garment—it is a celebration of heritage, patience, and bespoke craftsmanship designed exclusively for you.
         </p>
       </motion.div>
 
-      {/* 2. Our Story */}
-      <div className="max-w-[1200px] mx-auto px-6 mb-24 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+      {/* 2. Side-by-side Story: Heritage & Modernity */}
+      <div className="max-w-[1300px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32">
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 rounded-lg overflow-hidden shadow-sm h-[400px] relative"
+          className="flex flex-col items-start text-left"
         >
-          <motion.img 
-            style={{ y: imgY, scale: 1.3 }}
+          <span className="text-accent text-xs font-semibold tracking-widest uppercase mb-4">
+            The Craft
+          </span>
+          <h3 className="font-heading text-3xl md:text-4xl text-text-main mb-6 leading-snug">
+            Honoring the Ancient Art of Needlework
+          </h3>
+          <p className="text-text-muted leading-relaxed mb-6">
+            In an era of fast fashion, we take pride in the slow, meticulous process of hand embroidery. From delicate zardosi work to intricate aari embroidery, our master artisans bring decades of generational knowledge to every stitch.
+          </p>
+          <p className="text-text-muted leading-relaxed mb-8">
+            Each pattern is thoughtfully drawn, each bead hand-placed, creating blouses and garments that feel truly one-of-a-kind.
+          </p>
+          
+          <div className="flex items-center gap-8 border-t border-black/5 pt-6 w-full">
+            <div>
+              <span className="block font-heading text-2xl text-accent">100%</span>
+              <span className="text-[0.7rem] uppercase tracking-wider text-text-muted">Handcrafted</span>
+            </div>
+            <div className="w-[1px] h-8 bg-black/10"></div>
+            <div>
+              <span className="block font-heading text-2xl text-accent">Custom</span>
+              <span className="text-[0.7rem] uppercase tracking-wider text-text-muted">Fitted to You</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Parallax Image 1 */}
+        <motion.div 
+          style={{ y: imgY }}
+          className="relative w-full h-[450px] md:h-[550px] rounded-2xl overflow-hidden shadow-sm"
+        >
+          <img 
             src={IMAGES.storyImage} 
-            alt="Crafting garment" 
+            alt="Artisan embroidering silk blouse" 
             loading="lazy"
             className="w-full h-full object-cover origin-center"
           />
         </motion.div>
-        <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left"
-        >
-          <div className="flex items-center mb-4">
-            <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase">
-              Our Story
-            </h3>
-            <div className="w-1.5 h-1.5 rotate-45 bg-accent ml-3"></div>
-            <div className="w-8 h-[1px] bg-accent opacity-50 ml-2"></div>
-          </div>
-          
-          <h2 className="font-heading text-3xl md:text-4xl text-text-main mb-6">
-            Crafted with Passion
-          </h2>
-          
-          <p className="text-text-muted text-[0.95rem] leading-relaxed mb-6">
-            Rooted in tradition and inspired by contemporary design, our atelier is dedicated to creating bespoke blouse and saree designs that reflect elegance and individuality.
-          </p>
-          <p className="text-text-muted text-[0.95rem] leading-relaxed">
-            Every piece is thoughtfully crafted with attention to detail, ensuring a perfect balance of comfort, precision, and timeless beauty.
-          </p>
-        </motion.div>
       </div>
 
-      {/* 3. Feature Banner */}
-      <div className="w-full bg-[#F5F2EC]/60 py-12 px-6 mb-24 border-y border-accent/10">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ staggerChildren: 0.2 }}
-          className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          {[
-            { icon: Bespoke_design, title: "Bespoke Craftsmanship", desc: "Every design is tailored exclusively for you." },
-            { icon: premium, title: "Premium Materials", desc: "Only the finest fabrics and finishes are used." },
-            { icon: perfect_fit, title: "Perfect Fit", desc: "Designed to enhance comfort and confidence." }
-          ].map((feature, idx) => (
-            <motion.div 
-              key={idx}
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
-              className="flex items-center gap-6"
-            >
-              <div className="w-14 h-14 rounded-full border border-accent flex items-center justify-center text-accent flex-shrink-0">
-                <img src={feature.icon} alt="" className="w-10 h-10 object-contain"/>
-              </div>
-              <div>
-                <h4 className="font-heading text-lg text-text-main mb-1">{feature.title}</h4>
-                <p className="text-text-muted text-[0.8rem]">{feature.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+      {/* 3. Three Craft Highlights */}
+      <div className="bg-[#FAF8F5] py-20 px-6 border-y border-black/5 mb-32">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-6 text-accent">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/>
+              </svg>
+            </div>
+            <h4 className="font-heading text-xl text-text-main mb-3">Intricate Detailing</h4>
+            <p className="text-text-muted text-sm leading-relaxed max-w-xs">
+              Every curve, cut, and motif is designed with intention, enhancing the natural beauty of the fabric.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-6 text-accent">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21"/>
+              </svg>
+            </div>
+            <h4 className="font-heading text-xl text-text-main mb-3">Pure Silk & Thread</h4>
+            <p className="text-text-muted text-sm leading-relaxed max-w-xs">
+              We source premium raw silks, zari threads, and crystals to ensure your garment lasts for generations.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-6 text-accent">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <h4 className="font-heading text-xl text-text-main mb-3">Tailored Experience</h4>
+            <p className="text-text-muted text-sm leading-relaxed max-w-xs">
+              From the initial sketch to the final fitting, we collaborate closely with you to realize your vision.
+            </p>
+          </motion.div>
+
+        </div>
       </div>
 
-      {/* 4. Our Craftsmanship */}
-      <div className="max-w-[1200px] mx-auto px-6 mb-24 flex flex-col-reverse md:flex-row items-center gap-12 lg:gap-20">
+      {/* 4. Craftsmanship in Action */}
+      <div className="max-w-[1300px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32">
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left"
+          className="flex flex-col items-start text-left order-2 lg:order-1"
         >
-          <div className="flex items-center mb-4">
-            <div className="w-8 h-[1px] bg-accent opacity-50 mr-2"></div>
-            <div className="w-1.5 h-1.5 rotate-45 bg-accent mr-3"></div>
-            <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase">
-              Our Craftsmanship
-            </h3>
-          </div>
-          
-          <h2 className="font-heading text-3xl md:text-4xl text-text-main mb-6 leading-tight">
-            Details that Define<br />Excellence
-          </h2>
-          
-          <p className="text-text-muted text-[0.95rem] leading-relaxed mb-6">
-            From intricate hand embroidery to flawless finishing, each creation goes through a meticulous process by skilled artisans who pour their heart into every stitch.
+          <span className="text-accent text-xs font-semibold tracking-widest uppercase mb-4">
+            Uncompromising Quality
+          </span>
+          <h3 className="font-heading text-3xl md:text-4xl text-text-main mb-6 leading-snug">
+            Fit That Feels Like a Second Skin
+          </h3>
+          <p className="text-text-muted leading-relaxed mb-6">
+            A beautiful blouse is incomplete without the perfect fit. Our pattern-making process accounts for posture, comfort, and movement—ensuring that you feel confident and poised throughout your special occasions.
           </p>
-          <p className="text-text-muted text-[0.95rem] leading-relaxed">
-            Because true luxury lies in the details.
+          <p className="text-text-muted leading-relaxed">
+            Every seam is reinforced, every border cleanly finished, reflecting our commitment to quiet luxury and timeless elegance.
           </p>
         </motion.div>
+
+        {/* Parallax Image 2 */}
         <motion.div 
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 rounded-lg overflow-hidden shadow-sm h-[350px] relative"
+          style={{ y: imgYReverse }}
+          className="relative w-full h-[450px] md:h-[550px] rounded-2xl overflow-hidden shadow-sm order-1 lg:order-2"
         >
-          <motion.img 
-            style={{ y: imgYReverse, scale: 1.3 }}
+          <img 
             src={IMAGES.craftsmanshipImage} 
             alt="Gold embroidery detail" 
             loading="lazy"
@@ -181,7 +207,7 @@ const About = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="relative w-full py-20 px-6 flex flex-col items-center text-center bg-[#FDFCF8] border-t border-accent/10"
+        className="relative w-full pt-20 pb-0 flex flex-col items-center text-center bg-[#FDFCF8] border-t border-accent/10"
       >
         {/* Subtle floral left */}
         <div className="absolute top-0 left-0 w-64 h-64 pointer-events-none opacity-[0.03] text-black -scale-x-100 rotate-45">
@@ -191,41 +217,70 @@ const About = () => {
           </svg>
         </div>
 
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex items-center justify-center w-full mb-4 z-10"
-        >
-          <div className="w-4 h-[1px] bg-accent opacity-50"></div>
-          <div className="w-1.5 h-1.5 rotate-45 bg-accent mx-2"></div>
-          <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase mx-2">
-            Our Philosophy
-          </h3>
-          <div className="w-1.5 h-1.5 rotate-45 bg-accent mx-2"></div>
-          <div className="w-4 h-[1px] bg-accent opacity-50"></div>
-        </motion.div>
+        {/* Text Content */}
+        <div className="px-6 flex flex-col items-center text-center w-full z-10 mb-6 sm:mb-8">
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex items-center justify-center w-full mb-4"
+          >
+            <div className="w-4 h-[1px] bg-accent opacity-50"></div>
+            <div className="w-1.5 h-1.5 rotate-45 bg-accent mx-2"></div>
+            <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase mx-2">
+              Our Philosophy
+            </h3>
+            <div className="w-1.5 h-1.5 rotate-45 bg-accent mx-2"></div>
+            <div className="w-4 h-[1px] bg-accent opacity-50"></div>
+          </motion.div>
 
-        <motion.h2 
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="font-heading text-3xl md:text-4xl lg:text-[3rem] text-text-main leading-tight mb-8 z-10"
-        >
-          More Than Just Clothing,<br />It's an Experience
-        </motion.h2>
+          <motion.h2 
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="font-heading text-3xl md:text-4xl lg:text-[3rem] text-text-main leading-tight mb-8"
+          >
+            More Than Just Clothing,<br />It's an Experience
+          </motion.h2>
 
-        <motion.p 
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-text-muted text-[0.95rem] md:text-[1.05rem] max-w-2xl leading-relaxed z-10"
-        >
-          We believe that every garment should tell a story—of craftsmanship, culture, and individuality. Our designs are not just stitched, but thoughtfully created to make every moment feel extraordinary.
-        </motion.p>
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-text-muted text-[0.95rem] md:text-[1.05rem] max-w-2xl leading-relaxed"
+          >
+            We believe that every garment should tell a story—of craftsmanship, culture, and individuality. Our designs are not just stitched, but thoughtfully created to make every moment feel extraordinary.
+          </motion.p>
+        </div>
+
+        {/* Seamless, expansive luxury fluid gradient blend */}
+        <div 
+          aria-hidden="true"
+          className="w-full h-56 sm:h-72 md:h-[320px] lg:h-[400px] pointer-events-none select-none relative z-10"
+          style={{
+            background: `linear-gradient(to bottom,
+              rgb(253, 252, 248) 0.0%,
+              rgb(252, 250, 247) 6.2%,
+              rgb(246, 245, 242) 12.5%,
+              rgb(236, 235, 232) 18.8%,
+              rgb(222, 220, 219) 25.0%,
+              rgb(204, 201, 201) 31.2%,
+              rgb(182, 179, 180) 37.5%,
+              rgb(158, 154, 158) 43.8%,
+              rgb(134, 130, 135) 50.0%,
+              rgb(111, 106, 112) 56.2%,
+              rgb(90, 84, 92) 62.5%,
+              rgb(71, 65, 74) 68.8%,
+              rgb(56, 49, 60) 75.0%,
+              rgb(45, 38, 49) 81.2%,
+              rgb(38, 31, 42) 87.5%,
+              rgb(34, 27, 38) 93.8%,
+              rgb(33, 26, 37) 100.0%)`,
+          }}
+        />
       </motion.div>
 
     </section>

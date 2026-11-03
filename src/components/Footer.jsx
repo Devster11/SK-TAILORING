@@ -17,13 +17,13 @@ export default function Footer() {
       }}
       className="w-full"
     >
-      {/* 1. Large outlined "SK" watermark for screens > 425px (remains untouched: centered on tablet/laptop, all the way to right on desktop) */}
+      {/* 1. Large outlined "SK" watermark for screens > 425px (Fully visible, not chopped: generous vertical clearance & right breathing room) */}
       <span
         aria-hidden="true"
-        className="z-0 pointer-events-none select-none absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 min-[1200px]:left-auto min-[1200px]:right-0 min-[1200px]:translate-x-0 hidden min-[426px]:block"
+        className="z-0 pointer-events-none select-none absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 min-[1200px]:left-auto min-[1200px]:right-10 lg:min-[1200px]:right-16 min-[1200px]:translate-x-0 hidden min-[426px]:block"
         style={{
           fontFamily: "'Italiana', serif",
-          fontSize: "clamp(200px, 34vw, 420px)",
+          fontSize: "clamp(170px, 19vw, 260px)",
           lineHeight: 1,
           letterSpacing: "0.05em",
           color: "transparent",
@@ -34,29 +34,29 @@ export default function Footer() {
         SK
       </span>
 
-      {/* Inner container */}
+      {/* Inner container with luxury vertical breathing room */}
       <div
         style={{
           position: "relative",
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: "56px 20px 32px",
+          padding: "52px 20px 44px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "24px",
+          gap: "26px",
         }}
-        className="z-10 sm:py-16 sm:px-6 sm:gap-[26px]"
+        className="z-10 sm:py-20 md:py-24 sm:px-6 sm:gap-[28px]"
       >
         {/* 2. Tagline Wrapper: Houses mobile watermark so it centers directly to the text on <= 425px */}
         <div className="relative w-full flex items-center justify-center">
-          {/* Mobile watermark (<= 425px): Exactly centered behind the text */}
+          {/* Mobile watermark (<= 425px): Fully visible and centered directly behind the text */}
           <span
             aria-hidden="true"
             className="z-0 pointer-events-none select-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-[426px]:hidden"
             style={{
               fontFamily: "'Italiana', serif",
-              fontSize: "clamp(180px, 50vw, 220px)",
+              fontSize: "clamp(140px, 42vw, 175px)",
               lineHeight: 1,
               letterSpacing: "0.05em",
               color: "transparent",
