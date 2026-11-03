@@ -9,6 +9,7 @@ import Story from './components/Story';
 import WhyChooseUs from './components/WhyChooseUs';
 import Gallery from './components/Gallery';
 import About from './components/About';
+import Footer from './components/Footer';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -80,6 +81,8 @@ function App() {
           <Gallery />
           <About />
         </main>
+
+        <Footer />
       </div>
     </HelmetProvider>
   );
