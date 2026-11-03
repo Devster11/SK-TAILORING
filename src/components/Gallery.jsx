@@ -1,118 +1,137 @@
 import { useState } from "react";
 import CircularGallery from "./CircularGallery";
-import {
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  img9,
-  img10,
-  img11,
-  img12,
-  img13,
-} from "../assets/assets";
+
 // ==========================================
-// REPLACE THESE IMAGES WITH YOUR OWN ASSETS
+// DYNAMIC ASSET FOLDERS:
+// - Circular Gallery images: src/assets/circular-gallery/
+// - Container (Grid) images: src/assets/containers/
+// Any images dropped into these folders will automatically be displayed!
 // ==========================================
 
-// Images for the curved 3D gallery at the top
-const CIRCULAR_ITEMS = [
-  { image: img1, text: "Royal" },
-  { image: img2, text: "Heritage" },
-  { image: img3, text: "Minimal" },
-  { image: img4, text: "Symphony" },
-  { image: img5, text: "Bridal" },
-  { image: img6, text: "Classic" },
-];
+// 1. Load images from circular gallery folder
+const circularFiles = import.meta.glob(
+  [
+    "../assets/circular-gallery/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}",
+    "../assets/circular_gallery/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}",
+  ],
+  { eager: true, import: "default" }
+);
 
-// Images for the main grid gallery
-const GRID_ITEMS = [
+const DEFAULT_CIRCULAR_TEXTS = ["Royal", "Heritage", "Minimal", "Symphony", "Bridal", "Classic"];
+
+const CIRCULAR_ITEMS =
+  Object.keys(circularFiles).length > 0
+    ? Object.entries(circularFiles)
+        .sort(([pathA], [pathB]) =>
+          pathA.localeCompare(pathB, undefined, { numeric: true, sensitivity: "base" })
+        )
+        .map(([path, image], idx) => {
+          const filename = path.split("/").pop().replace(/\.[^/.]+$/, "");
+          const isNumeric = /^\d+$/.test(filename);
+          const text = !isNumeric && filename ? filename : DEFAULT_CIRCULAR_TEXTS[idx] || `Design ${idx + 1}`;
+          return { image, text };
+        })
+    : [];
+
+// 2. Load images from container folder
+const containerFiles = import.meta.glob(
+  [
+    "../assets/containers/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}",
+    "../assets/container/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}",
+  ],
+  { eager: true, import: "default" }
+);
+
+const DEFAULT_GRID_METADATA = [
   {
-    img: img1,
     title: "Royal Bridal",
     desc: "Exquisite hand embroidery with intricate french knots.",
     category: "BRIDAL",
   },
   {
-    img: img2,
     title: "Heritage Weave",
     desc: "Traditional motifs woven with timeless craftsmanship.",
     category: "FESTIVE",
   },
   {
-    img: img3,
     title: "Minimal Elegance",
     desc: "Subtle embroidery for a graceful and elegant look.",
     category: "MINIMAL",
   },
   {
-    img: img4,
     title: "Golden Symphony",
     desc: "Inspired by royalty, crafted to perfection.",
     category: "CONTEMPORARY",
   },
   {
-    img: img5,
     title: "Blush Radiance",
     desc: "Soft pastels adorned with shimmering zardosi work.",
     category: "BRIDAL",
   },
   {
-    img: img6,
     title: "Emerald Dream",
     desc: "Deep greens matched with rich golden thread details.",
     category: "FESTIVE",
   },
   {
-    img: img7,
     title: "Classic Vintage",
     desc: "A nod to the past with exquisite pearl highlights.",
     category: "CUSTOM MADE",
   },
   {
-    img: img8,
     title: "Regal Charm",
     desc: "Bold patterns designed to make a majestic statement.",
     category: "CONTEMPORARY",
   },
-
-  // NEW ITEMS FOR LOAD MORE
-
   {
-    img: img9,
     title: "Velvet Grace",
     desc: "Luxury embroidery with royal elegance.",
     category: "BRIDAL",
   },
   {
-    img: img10,
     title: "Golden Bloom",
     desc: "Inspired by traditional floral patterns.",
     category: "FESTIVE",
   },
   {
-    img: img11,
     title: "Pearl Essence",
     desc: "Clean design with subtle embellishments.",
     category: "MINIMAL",
   },
   {
-    img: img12,
     title: "Modern Muse",
     desc: "A contemporary twist on classic tailoring.",
     category: "CONTEMPORARY",
   },
   {
-    img: img13,
     title: "Signature Luxe",
     desc: "Custom-crafted masterpiece.",
     category: "CUSTOM MADE",
   },
 ];
+
+const CATEGORIES = ["BRIDAL", "FESTIVE", "MINIMAL", "CONTEMPORARY", "CUSTOM MADE"];
+
+const GRID_ITEMS =
+  Object.keys(containerFiles).length > 0
+    ? Object.entries(containerFiles)
+        .sort(([pathA], [pathB]) =>
+          pathA.localeCompare(pathB, undefined, { numeric: true, sensitivity: "base" })
+        )
+        .map(([path, img], idx) => {
+          const meta = DEFAULT_GRID_METADATA[idx] || {
+            title: `Bespoke Design ${idx + 1}`,
+            desc: "Custom-crafted luxury tailored to perfection.",
+            category: CATEGORIES[idx % CATEGORIES.length],
+          };
+          return {
+            img,
+            title: meta.title,
+            desc: meta.desc,
+            category: meta.category,
+          };
+        })
+    : [];
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState("ALL DESIGNS");
