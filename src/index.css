@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Italiana&family=Italianno&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -11,6 +11,8 @@
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
+  --font-italiana: "Italiana", cursive, serif;
+  --font-italianno: "Italianno", cursive;
 }
 
 html {
@@ -66,4 +68,44 @@ h1, h2, h3, h4, h5, h6 {
   to {
     opacity: 0;
   }
+}
+
+
+@utility font-italiana {
+  font-family: 'Italiana', cursive, serif;
+}
+
+.font-italiana {
+  font-family: 'Italiana', cursive, serif;
+}
+@utility font-italianno {
+  font-family: 'Italianno', cursive;
+}
+
+.font-italianno {
+  font-family: 'Italianno', cursive;
+}
+
+
+@keyframes whatsapp-wiggle {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+  }
+  20% {
+    transform: rotate(-14deg) scale(1.15);
+  }
+  40% {
+    transform: rotate(10deg) scale(1.18);
+  }
+  60% {
+    transform: rotate(-8deg) scale(1.15);
+  }
+  80% {
+    transform: rotate(6deg) scale(1.1);
+  }
+}
+
+.group:hover .whatsapp-wiggle-icon,
+.whatsapp-cta-btn:hover .whatsapp-wiggle-icon {
+  animation: whatsapp-wiggle 0.7s ease-in-out infinite alternate;
 }

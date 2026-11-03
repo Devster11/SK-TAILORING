@@ -15,30 +15,22 @@ const IMAGES = {
 const WhyChooseUs = () => {
   const cards = [
     {
-      icon: (
-       <img src={Bespoke_design} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
-      ),
+      icon: Bespoke_design,
       title: "Bespoke\nCraftsmanship",
       desc: "Every design is tailored exclusively for you."
     },
     {
-      icon: (
-        <img src={premium} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5"/>
-      ),
+      icon: premium,
       title: "Premium\nFinishes",
       desc: "Attention to detail in every stitch and pattern."
     },
     {
-      icon: (
-        <img src={perfect_fit} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
-      ),
+      icon: perfect_fit,
       title: "Perfect Fit\nGuarantee",
       desc: "Designed to enhance comfort and confidence."
     },
     {
-      icon: (
-        <img src={Affordable_price} alt="" loading="lazy" className="object-contain bg-white w-14 h-14 rounded-full shadow-sm mx-auto mt-8 md:mt-0 border border-black/5" />
-      ),
+      icon: Affordable_price,
       title: "Affordable\nPrice Range",
       desc: "Luxury designs that respect your budget."
     }
@@ -90,8 +82,13 @@ const WhyChooseUs = () => {
               whileHover={{ y: -10 }}
               className="bg-white rounded-2xl shadow-sm border border-black/5 p-8 md:p-10 flex flex-col items-center text-center hover:shadow-xl transition-all duration-300"
             >
-              <div className="mb-2">
-                {card.icon}
+              <div className="w-12 h-12 flex items-center justify-center mb-6">
+                <img 
+                  src={card.icon} 
+                  alt="" 
+                  loading="lazy" 
+                  className="w-9 h-9 sm:w-10 sm:h-10 object-contain transition-transform duration-300 hover:scale-105"
+                />
               </div>
               <h4 className="font-heading text-xl text-text-main mb-4 whitespace-pre-line">{card.title}</h4>
               <div className="w-8 h-[1px] bg-accent opacity-30 mb-4"></div>
@@ -112,7 +109,7 @@ const WhyChooseUs = () => {
         >
           {/* Mobile Title (shows on top for mobile, hidden on desktop) */}
           <h4 className="md:hidden font-heading text-lg font-semibold text-text-main text-center">
-            Trusted by 200+ Clients
+            Trusted by 50+ Clients
           </h4>
 
           {/* Avatars */}
@@ -129,14 +126,14 @@ const WhyChooseUs = () => {
             ))}
             {/* 10K+ Circle */}
             <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-accent bg-[#FDFBF7] flex items-center justify-center -ml-4 md:-ml-5 z-10 text-accent font-semibold text-xs md:text-sm shadow-sm">
-              200+
+              50+
             </div>
           </div>
 
           {/* Text Content */}
           <div className="text-center md:text-left flex-1">
             <h4 className="hidden md:block font-heading text-xl text-text-main mb-1">
-              Trusted by 200+ Clients
+              Trusted by 50+ Clients
             </h4>
             <p className="text-text-muted text-[0.8rem] md:text-[0.9rem]">
               Loved by thousands of happy customers.
