@@ -69,8 +69,8 @@ export default function Footer() {
 
           <p
             style={{
-              fontFamily: "'Italianno', cursive",
-              fontSize: "clamp(44px, 6.5vw, 82px)",
+              fontFamily: "'Ivy Ora', serif",
+              fontSize: "clamp(36px, 4.5vw, 64px)",
               lineHeight: 1.2,
               color: "#d9b36a",
               margin: 0,

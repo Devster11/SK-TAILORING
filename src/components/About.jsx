@@ -19,7 +19,7 @@ const About = () => {
   const imgYReverse = useTransform(scrollYProgress, [0, 1], ["15%", "-15%"]);
 
   return (
-    <section ref={containerRef} id="about" className="relative z-10 w-full pt-20 pb-0 overflow-hidden bg-[#FAF8F5]">
+    <section ref={containerRef} id="about" className="relative z-10 w-full pt-8 pb-0 overflow-hidden bg-[#FAF8F5]">
       
       {/* 1. Top Section: Our Atelier */}
       <motion.div 
@@ -39,8 +39,8 @@ const About = () => {
           <div className="w-6 h-[1px] bg-accent opacity-50"></div>
         </div>
 
-        <h2 className="font-heading text-4xl md:text-5xl lg:text-[4rem] text-text-main leading-tight mb-8">
-          Where Tradition<br />Meets Artistry
+        <h2 className="font-ivy-ora ivy-single-line font-normal text-4xl md:text-5xl lg:text-[4rem] text-text-main leading-tight mb-8">
+          Where Tradition Meets Artistry
         </h2>
 
         <div className="flex items-center justify-center w-full mb-8">
@@ -86,7 +86,7 @@ const About = () => {
             <div className="w-8 h-[1px] bg-accent opacity-50 ml-2"></div>
           </div>
           
-          <h2 className="font-heading text-3xl md:text-4xl text-text-main mb-6">
+          <h2 className="font-ivy-ora ivy-single-line ivy-single-line-narrow font-normal text-3xl md:text-4xl text-text-main mb-6">
             Crafted with Passion
           </h2>
           
@@ -147,8 +147,8 @@ const About = () => {
             </h3>
           </div>
           
-          <h2 className="font-heading text-3xl md:text-4xl text-text-main mb-6 leading-tight">
-            Details that Define<br />Excellence
+          <h2 className="font-ivy-ora ivy-single-line ivy-single-line-narrow font-normal text-3xl md:text-4xl text-text-main mb-6 leading-tight">
+            Details that Define Excellence
           </h2>
           
           <p className="text-text-muted text-[0.95rem] leading-relaxed mb-6">
@@ -214,9 +214,9 @@ const About = () => {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-heading text-3xl md:text-4xl lg:text-[3rem] text-text-main leading-tight mb-8 z-10"
+            className="font-ivy-ora ivy-single-line font-normal text-3xl md:text-4xl lg:text-[3rem] text-text-main leading-tight mb-8 z-10"
           >
-            More Than Just Clothing,<br />It's an Experience
+            More Than Just Clothing, It's an Experience
           </motion.h2>
 
           <motion.p 

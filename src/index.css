@@ -2,7 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Lato:wght@300;400;700&family=Herr+Von+Muellerhoff&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Ivy Ora";
+  src: url("/fonts/IvyOraDisplay-LightItalic.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @theme {
+  --font-ivy-ora: "Ivy Ora", serif;
   --color-background: #FAF8F5;
   --color-text-main: #333333;
   --color-text-muted: #666666;
@@ -33,6 +42,21 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
   font-weight: 500;
+}
+
+.font-ivy-ora {
+  font-family: 'Ivy Ora', serif;
+  font-weight: 400;
+}
+
+.ivy-single-line {
+  font-size: clamp(2rem, 4vw, 4rem);
+}
+
+@media (min-width: 768px) {
+  .ivy-single-line-narrow {
+    font-size: clamp(2rem, 2.5vw, 2.5rem);
+  }
 }
 
 /* Subtle floral background pattern, using an SVG */

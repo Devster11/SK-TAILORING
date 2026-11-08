@@ -151,7 +151,7 @@ const Gallery = () => {
   return (
     <section
       id="gallery"
-      className="relative z-10 w-full pt-24 pb-32 px-4 sm:px-6 lg:px-2 overflow-hidden bg-background"
+      className="relative z-10 w-full pt-24 pb-12 px-4 sm:px-6 lg:px-2 overflow-hidden bg-background"
     >
       <div className="max-w-[1400px] mx-auto flex flex-col items-center">
         {/* Header Text */}
@@ -166,7 +166,7 @@ const Gallery = () => {
             <div className="w-4 h-[1px] bg-accent opacity-50"></div>
           </div>
 
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[3.5rem] text-text-main leading-tight mb-6">
+          <h2 className="font-ivy-ora ivy-single-line font-normal text-4xl md:text-5xl lg:text-[3.5rem] text-text-main leading-tight mb-6">
             Timeless Designs, Crafted for You
           </h2>
 

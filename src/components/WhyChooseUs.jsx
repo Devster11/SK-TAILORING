@@ -51,8 +51,8 @@ const WhyChooseUs = () => {
           <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase mb-4">
             Why Choose Us
           </h3>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[4rem] text-text-main leading-tight mb-6">
-            Crafted with care,<br className="hidden md:block" /> chosen for you.
+          <h2 className="font-ivy-ora ivy-single-line font-normal text-4xl md:text-5xl lg:text-[4rem] text-text-main leading-tight mb-6">
+            Crafted with care, chosen for you.
           </h2>
           
           <div className="flex items-center justify-center w-full mb-6">

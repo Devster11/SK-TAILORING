@@ -35,7 +35,7 @@ const Hero = () => {
             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
             className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[2.2rem] xl:text-[2.85rem] 2xl:text-[3.4rem] leading-[1.1] text-text-main mb-6 text-center w-full"
           >
-            <span className="block font-italianno text-accent text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[5.8rem] 2xl:text-[6.5rem] font-normal tracking-wide leading-none select-none py-1">
+            <span className="block font-ivy-ora ivy-single-line text-accent text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.5rem] font-normal tracking-wide leading-none select-none py-1">
               Timeless Elegance,
             </span>
             <span className="block font-heading text-text-main lg:whitespace-nowrap mt-1">

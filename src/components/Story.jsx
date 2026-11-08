@@ -65,7 +65,7 @@ const Story = () => {
           <h3 className="text-[0.65rem] tracking-[0.25em] font-bold text-accent uppercase mb-4">
             At Our Atelier
           </h3>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-[4rem] text-text-main leading-tight mb-6">
+          <h2 className="font-ivy-ora ivy-single-line font-normal text-4xl md:text-5xl lg:text-[4rem] text-text-main leading-tight mb-6">
             Every stitch tells a story.
           </h2>
 
